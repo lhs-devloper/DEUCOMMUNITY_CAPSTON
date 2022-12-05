@@ -16,6 +16,14 @@ class UserRepository{
             return "Error"
         }
     }
+    async FindCustomer({email}){
+        try{
+            const existingCustomer = await UserModel.findOne({ email });
+            return existingCustomer
+        }catch(err){
+            return "Error"
+        }
+    }
     async DeleteUser({ email }){
         const deleteResult = await UserModel.deleteOne({email})
         return deleteResult;

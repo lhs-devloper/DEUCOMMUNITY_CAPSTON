@@ -1,7 +1,7 @@
+require('dotenv').config();
 const app = require('./server');
 const db = require('./db/index');
 const { runSocketIO } = require('./socket');
-require('dotenv').config();
 const http = require('http');
 const server = http.createServer(app)
 
