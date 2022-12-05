@@ -5,12 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>글쓰기</title>
+    <link rel="stylesheet" href="/public/css/editor.css">
 </head>
 <body>
     <%- include('./partials/navbar') %>
-    <h1>TinyMCE Demo</h1>
-    <!-- Text area matching the selector specified in the TinyMCE configuration -->
-    <textarea id="my-expressjs-tinymce-app">Hello, World!</textarea>
+    <h1>글쓰기</h1>
+    <form>
+        <input type="text" name="title" placeholder="제목을 입력해주세요">
+        <!-- Text area matching the selector specified in the TinyMCE configuration -->
+        <textarea id="my-expressjs-tinymce-app" name="content">Hello, World!</textarea>
+        <input type="submit" value="등록하기">
+    </form>
     
     <!-- Script element sourcing TinyMCE -->
     <script type="application/javascript" src= "/tinymce/tinymce.min.js"></script>

@@ -40,7 +40,7 @@ class UserService {
             // create salt
             let salt = await GenerateSalt();
             let userPassword = await GeneratePassword(password, salt);
-            const existingCustomer = await this.repository.CreateUser({ email, password: userPassword, phone, salt});      
+            const customer = await this.repository.CreateUser({ email, password: userPassword, phone, salt});      
             return FormateData({
                 msg: "회원가입에 성공하였습니다",
                 join: "SUCCESS"

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { PostModel, UserModel } = require('../models');
 
 class PostRepository{
-    async CreatePost({title, content}, _id){
+    async CreatePost({title, content, _id}){
         try{
             const newPost = new PostModel({
                 title,
@@ -16,6 +16,9 @@ class PostRepository{
         }catch(err){
             return "DB_KEY_ERROR"
         }
+    }
+    async FindPost({title}){
+        
     }
 }
 

@@ -6,6 +6,5 @@ module.exports = async() => {
         console.log('DB Connected');
     } catch (error) {
         console.error('Error ============ ON DB Connection')
-        console.log(error);
     }
 };

@@ -7,7 +7,7 @@ const session = require("express-session");
 const MongoStore = require('connect-mongo');
 const { localsMiddleware } = require("./middlewares");
 
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
 app.set('views', process.cwd()+"/src/views");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -22,13 +22,15 @@ app.use(
   })
 );
 
-app.use(localsMiddleware)
+app.use(localsMiddleware);
 app.use('/tinymce', express.static(process.cwd()+'/node_modules/tinymce'));
 app.use('/public', express.static(path.join(__dirname, "public/")))
 app.get("/", (req, res)=>{
     logger.info("home")
     return res.render("home")
-})
-app.use("/", router.user)
-app.use("/chat", router.chat)
+});
+app.use("/", router.user);
+app.use("/post", router.post);
+// app.use("/comment", router.comment);
+app.use("/chat", router.chat);
 module.exports = app;
