@@ -1,12 +1,13 @@
+const CommentRepository = require("../db/repository/CommentRepository");
 
 class CommentService{
     constructor() {
-        this.repository = new PostRepository();
+        this.repository = new CommentRepository();
     }
-    async WritePost(userInputs) {
+    async WriteComment(userInputs) {
         const {title, content, _id} = userInputs
         try{
-            const post = this.repository.CreatePost({title, content, _id});
+            const comment = this.repository.CreateComment({title, content, _id});
             return FormateData({
                 msg: 'SUCCESS',
                 comment: comment
@@ -15,6 +16,12 @@ class CommentService{
             return "BODY_ERROR"
         }
     }
+
+    async FindComment(userInputs){
+
+    }
+
+    
 }
 
 module.exports = CommentService

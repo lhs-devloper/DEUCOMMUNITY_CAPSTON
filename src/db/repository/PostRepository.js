@@ -6,7 +6,8 @@ class PostRepository{
         try{
             const newPost = new PostModel({
                 title,
-                content
+                content,
+                owner: _id
             })
             const user = await UserModel.findById(_id);
             user.posts.push(newPost._id)
@@ -17,8 +18,32 @@ class PostRepository{
             return "DB_KEY_ERROR"
         }
     }
-    async FindPost({title}){
-        
+    async FindPost({id}){
+        try{
+            const postResult = await PostModel.findById(id);
+            return postResult
+        }catch(err){
+            return "DB_KEY_ERROR"
+        }
+    }
+    async CountPost(){
+        try{
+            const count = await PostModel.find()
+            return count.length
+        }catch(err){
+            return "DB_KEY_ERROR"
+        }
+    }
+    async FindList({id}){
+        try{
+            const postResult = await PostModel.find().sort({createdAt: -1}).populate("owner").skip((id-1)*10).limit(10);
+            return postResult
+        }catch(err){
+            return "DB_KEY_ERROR"
+        }
+    }
+    async DeletePost(){
+
     }
 }
 

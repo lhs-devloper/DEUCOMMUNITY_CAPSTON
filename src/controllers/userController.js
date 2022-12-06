@@ -12,7 +12,7 @@ exports.postJoin = async (req, res) => {
     try{
         const { data } = await service_user.SignUp({email, password, phone});
         if(data.join === "SUCCESS"){
-            return res.render("login")
+            return res.redirect("/login")
         }else{
             return res.render("join", {
                 error: data
@@ -34,7 +34,7 @@ exports.postLogin = async (req, res) => {
         const { data } = await service_user.SignIn({email, password});
         if(data.login === "SUCCESS"){
             req.session.loggedIn = true;
-            req.session.user = data.email
+            req.session.user = data
             return res.redirect("/")
         }else{
             return res.render("login", {

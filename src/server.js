@@ -5,8 +5,10 @@ const app = express();
 const path = require('path');
 const session = require("express-session");
 const MongoStore = require('connect-mongo');
+const flash = require('express-flash');
 const { localsMiddleware } = require("./middlewares");
 
+app.use(flash())
 app.set('view engine', 'ejs');
 app.set('views', process.cwd()+"/src/views");
 app.use(express.urlencoded({ extended: true }));

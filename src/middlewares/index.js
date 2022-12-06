@@ -4,14 +4,14 @@ exports.localsMiddleware = (req, res, next) => {
     next();
 };
   
-// exports.protectorMiddleware = (req, res, next) => {
-//     if (req.session.loggedIn) {
-//       return next();
-//     } else {
-//       req.flash("error", "Log in first.");
-//       return res.redirect("/login");
-//     }
-// };
+exports.protectorMiddleware = (req, res, next) => {
+    if (req.session.loggedIn) {
+      return next();
+    } else {
+      req.flash("error", "Log in first.");
+      return res.redirect("/login");
+    }
+};
   
 // exports.publicOnlyMiddleware = (req, res, next) => {
 //     if (!req.session.loggedIn) {

@@ -6,7 +6,7 @@ module.exports.GenerateSalt = async() => {
 }
 
 // 패스워드 해싱
-module.exports.GenearetPassword = async(password, salt) => {
+module.exports.GeneratePassword = async(password, salt) => {
     return await bcrypt.hash(password, salt);
 }
 // 패스워드 검증
@@ -15,7 +15,7 @@ module.exports.ValidatePassword = async(
     savedPassword,
     salt
 ) => {
-    return (await this.GenearetPassword(inputPassword, salt)) === savedPassword
+    return (await this.GeneratePassword(inputPassword, salt)) === savedPassword
 }
 
 module.exports.FormateData = (data) => {

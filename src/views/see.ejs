@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('./partials/navbar') %>
+    <div style="text-align:center; font-size: 3vw;">
+        동의대 포스트
+    </div>
+    <table style="width: 100%; text-align:center; margin-top: 5%">
+        <thead>
+            <tr>
+                <th class="table_no">글 번호</th>
+                <th class="table_title">제목</th>
+                <th class="table_writer" >글쓴이</th>
+                <th class="table_view">조회 수</th>
+                <th class="table_createdAt">작성일</th>
+            </tr>
+        </thead>
+        <tbody>
+            <style>
+                a{
+                    text-decoration: none;
+                    color: #000000;
+                }
+            </style>
+            <% for(var i=0; i<data.length; i++) { %>
+            <tr>
+                <th style="width: 12%;"><a href="/post/view/<%= data[i]._id%>"><%= length-i %></a></th>
+                <th style="width: 50%;"><a href="/post/view/<%= data[i]._id%>"><%= data[i].title %></a></th>
+                <th style="width: 13%;"><a href="/post/view/<%= data[i]._id%>"><%= data[i].owner.email %></a></th>
+                <th style="width: 12%;"><a href="/post/view/<%= data[i]._id%>"><%= data[i].meta.views %></a></th>
+                <th><a href="/post/view/<%= data[i]._id%>"><%= data[i].createdAt.getFullYear() %>-<%= data[i].createdAt.getMonth()+1 %>-<%= data[i].createdAt.getDate() %></a></th>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+    
+    <div style="text-align: center; margin-top: 3%">
+    <% for(var i=0; i<length; i+=10) { %>
+        <a href="/post?id=<%= (i/10+1) %>" style="padding-left: 1%"><%= (i/10+1) %></a>
+    <% } %>
+    </div>
+    <%- include('./partials/footer') %>
+</body>
+</html>
