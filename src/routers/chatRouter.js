@@ -1,5 +1,5 @@
 const express = require('express');
-const { getRoom, getMessage, getCreateRoom, postCreateRoom } = require('../controllers/chatController');
+const { getRoom, getCreateRoom, postCreateRoom, postChatting, getEnterRoom } = require('../controllers/chatController');
 const { protectorMiddleware } = require('../middlewares');
 
 const chatRouter = express.Router();
@@ -16,8 +16,12 @@ chatRouter
 .post(postCreateRoom)
 
 chatRouter
-.route("/*")
 .all(protectorMiddleware)
-.get(getMessage)
+.get("/:id", getEnterRoom)
+
+chatRouter
+.all(protectorMiddleware)
+.post("/:id/chat", postChatting)
+
 
 module.exports = chatRouter;

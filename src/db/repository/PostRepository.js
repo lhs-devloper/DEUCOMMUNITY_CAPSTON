@@ -20,7 +20,7 @@ class PostRepository{
     }
     async FindPost({id}){
         try{
-            const postResult = await PostModel.findById(id);
+            const postResult = await PostModel.findById(id).populate("owner");
             return postResult
         }catch(err){
             return "DB_KEY_ERROR"

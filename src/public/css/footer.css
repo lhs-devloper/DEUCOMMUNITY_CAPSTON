@@ -1,6 +1,14 @@
 .footer{
     width: 100%;
     text-align: center;
+    margin-top: 100px;
+    position:relative;
+    min-height:100%;
+}
+
+footer {
+    width: 100%;
+    position: absolute;  
     bottom: 0;
-    position: absolute;
+    left: 0;
 }

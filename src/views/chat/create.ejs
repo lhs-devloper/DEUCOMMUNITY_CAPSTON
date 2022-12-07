@@ -7,11 +7,19 @@
     <title>Document</title>
 </head>
 <body>
-    <%- include('./partials/navbar') %>
+    <%- include('../partials/navbar') %>
+    
     <form method="POST">
-        <input type="text">
-        <input type="submit">
+        <div>
+            <input type="text" name="title" placeholder="방 제목">
+        </div>
+        <div>
+            <input type="number" name="max" placeholder="허용 인원" value="10">
+        </div>
+        <div>
+            <input type="submit">
+        </div>
     </form>
-    <%- include('./partials/footer') %>
+    <%- include('../partials/footer') %>
 </body>
 </html>

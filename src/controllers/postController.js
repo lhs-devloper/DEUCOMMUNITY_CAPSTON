@@ -15,7 +15,6 @@ exports.getPage = async(req, res) => {
 }
 
 exports.getPosting = async(req, res) => {
-    console.log(req.session.user)
     return res.render("write")
 }
 
@@ -29,7 +28,6 @@ exports.postPosting = async (req, res) => {
         
         const { title, content } = req.body;
         const { data } = await service_post.WritePost({title, content, _id})
-        console.log(data)
         return res.redirect("/post")
     }catch(err){
         return res.render("write")

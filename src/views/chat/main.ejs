@@ -5,9 +5,83 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/public/css/room.css">
 </head>
 <body>
-    <%- include('./partials/navbar') %>
-    <%- include('./partials/footer') %>
+    <%- include('../partials/navbar') %>
+    <table style="margin-left:auto; margin-right:auto">
+        <thead>
+            <tr>
+                <th>방 제목</th>
+                <th>허용 인원</th>
+                <th>방장</th>
+                <th>입장</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(var i=0; i<rooms.length; i++) { %>
+                <tr>
+                    <td><%=rooms[i].title%></td>
+                    <td><%=rooms[i].max%></td>
+                    <td><%=rooms[i].owner.email%></td>
+                    <td>
+                        <button data-id="<%= rooms[i]._id%>" class="join-btn">
+                            입장
+                        </button>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+    <button class="newRoom" style="float:right">
+        방 만들러가기
+    </button>
+    <script>
+        const button = document.querySelector('.newRoom')
+        function addNewEvent(){
+            location.href = '/room/create'
+        }
+        button.addEventListener('click', addNewEvent)
+    </script>
+    <%- include('../partials/footer') %>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io.connect('http://localhost:8000/room', {
+            path: '/socket.io',
+        })
+        socket.on('newRoom', (data)=> {
+            const tr = document.createElement('tr');
+            let td = document.createElement('td');
+            td.textContent = data.title;
+            tr.appendChild(td);
+            td = document.createElement('td');
+            td.textContent = data.max;
+            tr.appendChild(td);
+            td = document.createElement('td');
+            const button = document.createElement('button');
+            button.textContent = '입장';
+            button.dataset.id = data._id;
+            button.addEventListener('click', addBtnEvent);
+            td.appendChild(button);
+            tr.dataset.id = data._id;
+            document.querySelector('table tbody').appendChild(tr);
+        });
+
+        socket.on('removeRoom', ()=>{
+            document.querySelectorAll('tbody tr').forEach(function(tr){
+                if(tr.dataset.id == data){
+                    tr.parentNode.removeChild(tr);
+                }
+            })
+        })
+
+        function addBtnEvent(e){
+            location.href = '/room/' + e.target.dataset.id;
+        }
+
+        document.querySelectorAll('.join-btn').forEach((btn)=>{
+            btn.addEventListener('click', addBtnEvent)
+        })
+    </script>
 </body>
 </html>

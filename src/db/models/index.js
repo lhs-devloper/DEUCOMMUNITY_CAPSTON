@@ -4,4 +4,6 @@ module.exports = {
     CommentModel: require('./Comment'),
     RoomModel: require('./Room'),
     ChatModel: require('./Chat'),
+    RoomModel: require('./Room'),
+    ChatModel: require('./Chat'),
 }

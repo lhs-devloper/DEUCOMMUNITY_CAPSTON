@@ -8,6 +8,7 @@ const MongoStore = require('connect-mongo');
 const flash = require('express-flash');
 const { localsMiddleware } = require("./middlewares");
 
+
 app.use(flash())
 app.set('view engine', 'ejs');
 app.set('views', process.cwd()+"/src/views");
@@ -34,5 +35,5 @@ app.get("/", (req, res)=>{
 app.use("/", router.user);
 app.use("/post", router.post);
 // app.use("/comment", router.comment);
-app.use("/chat", router.chat);
+app.use("/room", router.chat);
 module.exports = app;

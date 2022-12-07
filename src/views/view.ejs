@@ -30,6 +30,23 @@
             <th><%- data.content %></th>
         </tr>
     </table>
+    <div>
+    <% if(loggedInUser.email == data.owner.email) { %>
+      <a href="/post/delete/<%= data._id %>" style="margin-top:1%; float:right; margin-right: 5%; background-color: #3b4890; color:#fff; width:5%; text-align:center">삭제</a>
+    <% } %>
+    </div>
+    <div style="margin-top:5%; text-align:center;">
+      <form method="POST" action="/comment/<%= data._id %>">
+        <textarea name="comment" style="resize:none;" placeholder="댓글을 입력해주세요" onkeypress="check_enter()"></textarea>
+      </form>
+    </div>
+    <script>
+      function check_enter(){
+        if(event.keyCode==13){
+          event.returnValue=false;
+        }
+      }
+    </script>
     <%- include('./partials/footer') %>
 </body>
 </html>
