@@ -37,6 +37,7 @@ exports.postPosting = async (req, res) => {
 exports.viewPost = async(req, res) => {
     const { id } = req.params;
     const { data } = await service_post.FindPost({id})
+    console.log(data)
     logger.info(`GET/${id}`)
     return res.render("view", {
         data: data.post

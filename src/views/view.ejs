@@ -36,10 +36,16 @@
     <% } %>
     </div>
     <div style="margin-top:5%; text-align:center;">
-      <form method="POST" action="/comment/<%= data._id %>">
+      <form method="POST" action="/post/view/<%= data._id %>/comment">
         <textarea name="comment" style="resize:none;" placeholder="댓글을 입력해주세요" onkeypress="check_enter()"></textarea>
+        <div>
+          <input type="submit" value="댓글 등록">
+        </div>
       </form>
     </div>
+    <% for(var i=0; i<data.comments.length; i++) { %>
+      <div style="margin-left: 5%"><%= data.comments[i].comment %></div>
+    <% } %>
     <script>
       function check_enter(){
         if(event.keyCode==13){
