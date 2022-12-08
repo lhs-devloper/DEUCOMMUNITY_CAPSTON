@@ -46,7 +46,7 @@
     <%- include('../partials/footer') %>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        const socket = io.connect('http://localhost:8000/room', {
+        const socket = io.connect('http://devlhs.co.kr:8000/room', {
             path: '/socket.io',
         })
         socket.on('newRoom', (data)=> {
