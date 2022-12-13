@@ -24,6 +24,4 @@ postRouter
 .route("/view/:id")
 .get(viewPost)
 
-
-
 module.exports = postRouter;
