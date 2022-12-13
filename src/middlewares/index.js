@@ -15,7 +15,7 @@ exports.protectorMiddleware = (req, res, next) => {
     }
 };
 
-exports.videoUpload = multer({
+exports.imageUpload = multer({
     dest: "uploads/",
     limits: {
       fileSize: 10000000,

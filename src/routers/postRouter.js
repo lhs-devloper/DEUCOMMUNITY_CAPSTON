@@ -17,6 +17,7 @@ postRouter
 
 postRouter
 .route("/view/:id/comment")
+.all(protectorMiddleware)
 .post(postComment)
 
 postRouter
